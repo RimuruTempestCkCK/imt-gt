@@ -50,6 +50,8 @@ class CatalogDemoSeeder extends Seeder
                     'google_maps_link' => 'https://maps.google.com/?q=Pekanbaru',
                     'longitude' => '101.4478',
                     'latitude' => '0.5071',
+                    'npwp_number' => '01.234.567.8-901.000',
+                    'nib_number' => '1234567890123',
                 ],
                 'contacts' => [
                     ['name' => 'Rizal Hidayat', 'position' => 'Export Manager', 'phone' => '+62 812 7000 101', 'email' => 'rizal@riau-palmtech.example'],
@@ -136,6 +138,8 @@ class CatalogDemoSeeder extends Seeder
                     'google_maps_link' => 'https://maps.google.com/?q=Shah+Alam',
                     'longitude' => '101.5183',
                     'latitude' => '3.0738',
+                    'npwp_number' => '11.222.333.4-555.000',
+                    'nib_number' => '0987654321098',
                 ],
                 'contacts' => [
                     ['name' => 'Farah Nabila', 'position' => 'Business Development Lead', 'phone' => '+60 12 880 1101', 'email' => 'farah@selangor-components.example'],
@@ -221,6 +225,8 @@ class CatalogDemoSeeder extends Seeder
                     'google_maps_link' => 'https://maps.google.com/?q=Bangkok',
                     'longitude' => '100.5018',
                     'latitude' => '13.7563',
+                    'npwp_number' => '99.888.777.6-555.000',
+                    'nib_number' => '5432109876543',
                 ],
                 'contacts' => [
                     ['name' => 'Anucha Srisawat', 'position' => 'Regional Trade Contact', 'phone' => '+66 81 778 3301', 'email' => 'anucha@bangkok-spice.example'],
