@@ -21,6 +21,9 @@
 
             <nav class="mt-8 space-y-2 text-sm">
                 <div class="pt-2 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">{{ app()->isLocale('en') ? 'Member Menu' : 'Menu Member' }}</div>
+                <a href="{{ route('account.dashboard') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.dashboard') ? 'bg-cyan-500/20 text-cyan-200 font-semibold border border-cyan-500/30' : 'text-slate-100 hover:bg-white/10' }}">
+                    Dashboard
+                </a>
                 <a href="{{ route('account.products.index') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.products.*') ? 'bg-cyan-500/20 text-cyan-200 font-semibold border border-cyan-500/30' : 'text-slate-100 hover:bg-white/10' }}">
                     {{ app()->isLocale('en') ? 'My Products' : 'Produk Saya' }}
                 </a>

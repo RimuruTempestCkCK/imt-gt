@@ -44,6 +44,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    Route::get('/akun/dashboard', [App\Http\Controllers\AccountDashboardController::class, 'index'])->name('account.dashboard');
     Route::get('/akun/profil-perusahaan', [CompanyProfileController::class, 'edit'])->name('account.company-profile.edit');
     Route::put('/akun/profil-perusahaan', [CompanyProfileController::class, 'update'])->name('account.company-profile.update');
     Route::get('/akun/produk', [ProductController::class, 'index'])->name('account.products.index');

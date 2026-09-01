@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        return redirect()->intended(route('account.company-profile.edit'));
+        return redirect()->intended(route('account.dashboard'));
     }
 
     public function destroy(Request $request): RedirectResponse
