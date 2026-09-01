@@ -370,7 +370,25 @@
             </div>
         </section>
 
-
+        <section id="profil" class="relative overflow-hidden py-20 bg-white">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+                    <div class="reveal">
+                        <p class="text-sm uppercase tracking-[0.38em] text-cyan-700/70">{{ $isEnglish ? 'Profile' : 'Profil' }}</p>
+                        <h2 class="mt-3 font-['Playfair_Display'] text-4xl text-slate-900">{{ $isEnglish ? 'About Indonesia IMT-GT Business Centre' : 'Tentang Indonesia IMT-GT Business Centre' }}</h2>
+                        <p class="mt-5 text-base leading-8 text-slate-600">
+                            {{ $isEnglish ? 'Indonesia IMT-GT Business Centre is dedicated to facilitating trade, investment, tourism, and MSME growth across the region. We aim to foster seamless cooperation between members and drive sustainable economic development.' : 'Indonesia IMT-GT Business Centre didedikasikan untuk memfasilitasi perdagangan, investasi, pariwisata, dan pertumbuhan UMKM di seluruh kawasan. Kami bertujuan untuk mendorong kerja sama yang mulus antar anggota dan mendorong pembangunan ekonomi yang berkelanjutan.' }}
+                        </p>
+                        <div class="mt-8 flex gap-4">
+                            <a href="#kerjasama" class="imtgt-button imtgt-button-primary text-white">{{ $isEnglish ? 'Learn More' : 'Pelajari Lebih Lanjut' }}</a>
+                        </div>
+                    </div>
+                    <div class="reveal overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm">
+                        {!! $illustration('profile', 'h-80 w-full') !!}
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="program" class="relative overflow-hidden border-y border-slate-200 bg-slate-50 py-20">
             <div class="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_center,_rgba(45,212,191,0.16),_transparent_60%)]"></div>
@@ -558,6 +576,41 @@
                         <h3 class="mt-3 text-2xl font-semibold text-white">{{ $isEnglish ? 'Sample success story: a local food product successfully entered a regional promotion network.' : 'Simulasi success story: produk pangan lokal berhasil masuk jaringan promosi regional.' }}</h3>
                         <p class="mt-4 text-sm leading-7 text-slate-300/76">{{ $isEnglish ? 'Success stories show how collaboration can create tangible results for business actors, institutions, and regional development.' : 'Cerita sukses menunjukkan bagaimana kolaborasi dapat menghasilkan manfaat nyata bagi pelaku usaha, institusi, dan pengembangan kawasan.' }}</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan" class="relative overflow-hidden py-20 bg-slate-50 border-t border-slate-200">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mb-12 text-center reveal">
+                    <p class="text-sm uppercase tracking-[0.38em] text-cyan-700/70">{{ $isEnglish ? 'Our Services' : 'Layanan Kami' }}</p>
+                    <h2 class="mt-3 font-['Playfair_Display'] text-4xl text-slate-900">{{ $isEnglish ? 'What We Offer' : 'Apa yang Kami Tawarkan' }}</h2>
+                    <p class="mt-4 mx-auto max-w-2xl text-base leading-8 text-slate-600">
+                        {{ $isEnglish ? 'Explore the various support systems and services provided by the Business Centre to help you navigate and succeed in the regional market.' : 'Jelajahi berbagai sistem dukungan dan layanan yang disediakan oleh Business Centre untuk membantu Anda menavigasi dan sukses di pasar regional.' }}
+                    </p>
+                </div>
+                <div class="grid gap-6 md:grid-cols-3">
+                    <div class="reveal rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+                        <div class="h-12 w-12 rounded-xl bg-cyan-100 flex items-center justify-center text-cyan-600 mb-5">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900">{{ $isEnglish ? 'Business Matching' : 'Pencocokan Bisnis' }}</h3>
+                        <p class="mt-3 text-sm text-slate-600">{{ $isEnglish ? 'Connect with potential partners and investors across the IMT-GT region.' : 'Terhubung dengan calon mitra dan investor di seluruh kawasan IMT-GT.' }}</p>
+                    </div>
+                    <div class="reveal rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+                        <div class="h-12 w-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 mb-5">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900">{{ $isEnglish ? 'Market Intelligence' : 'Informasi Pasar' }}</h3>
+                        <p class="mt-3 text-sm text-slate-600">{{ $isEnglish ? 'Access up-to-date data and research on market trends and opportunities.' : 'Akses data dan riset terkini mengenai tren pasar dan berbagai peluang usaha.' }}</p>
+                    </div>
+                    <div class="reveal rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+                        <div class="h-12 w-12 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 mb-5">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900">{{ $isEnglish ? 'Policy Advocacy' : 'Advokasi Kebijakan' }}</h3>
+                        <p class="mt-3 text-sm text-slate-600">{{ $isEnglish ? 'Support in navigating regulations and advocating for business-friendly policies.' : 'Dukungan navigasi regulasi dan advokasi kebijakan yang mendukung dunia usaha.' }}</p>
+                    </div>
                 </div>
             </div>
         </section>
