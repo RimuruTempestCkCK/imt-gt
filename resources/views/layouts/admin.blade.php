@@ -5,17 +5,13 @@
 @section('body')
     <div class="min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
         <aside class="border-b border-white/10 bg-slate-950 px-6 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-4">
-                <div class="flex h-12 w-28 items-center overflow-hidden rounded-xl bg-white/10 px-2 py-1 shadow-sm border border-white/10">
+            <a href="{{ route('admin.dashboard') }}" class="inline-block">
+                <div class="flex h-14 w-auto max-w-[12rem] items-center overflow-hidden rounded-xl bg-white/10 px-3 py-1 shadow-sm border border-white/10">
                     <img
                         src="https://imtgt.org/wp-content/uploads/2020/11/LOGO-RED-WHITE-1-1536x768.png"
                         alt="IMT-GT Logo"
                         class="h-full w-full object-contain"
                     >
-                </div>
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">{{ data_get($siteSettings ?? [], 'app_name', 'IMT-GT') }}</p>
-                    <p class="text-sm text-slate-500">{{ data_get($siteSettings ?? [], 'app_tagline', 'Indonesia IMT-GT Business Centre') }}</p>
                 </div>
             </a>
 
