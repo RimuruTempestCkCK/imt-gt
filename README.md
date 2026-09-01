@@ -15,7 +15,7 @@ IMT-GT (Indonesia–Malaysia–Thailand Growth Triangle) Business Marketplace ad
 
 - **Framework:** Laravel 12
 - **Frontend:** Blade Templating, Tailwind CSS
-- **Database:** MySQL / MariaDB / PostgreSQL
+- **Database:** MySQL
 - **Asset Bundler:** Vite
 
 ## ⚙️ Persyaratan Sistem
@@ -23,7 +23,7 @@ IMT-GT (Indonesia–Malaysia–Thailand Growth Triangle) Business Marketplace ad
 - PHP >= 8.2
 - Composer
 - Node.js & npm
-- Database (MySQL/MariaDB/PostgreSQL)
+- Database MySQL
 
 ## 📦 Panduan Instalasi
 
