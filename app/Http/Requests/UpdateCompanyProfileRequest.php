@@ -16,7 +16,7 @@ class UpdateCompanyProfileRequest extends FormRequest
     {
         return [
             'name' => ['nullable', 'string', 'max:255'],
-            'account_email' => ['nullable', 'email:rfc,dns', 'max:255', Rule::unique('users', 'email')->ignore($this->user()->id)],
+            'account_email' => ['nullable', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user()->id)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'company_prefix' => ['nullable', Rule::in(['PT', 'CV', 'UD', 'FA', 'Koperasi', 'Others', 'PD'])],
             'company_name' => ['required', 'string', 'max:255'],
@@ -36,7 +36,7 @@ class UpdateCompanyProfileRequest extends FormRequest
             'terms_of_payment' => ['nullable', 'string', 'max:50'],
             'employee_count' => ['nullable', 'integer', 'min:0'],
             'website' => ['nullable', 'url', 'max:255'],
-            'business_email' => ['nullable', 'email:rfc,dns', 'max:255'],
+            'business_email' => ['nullable', 'email', 'max:255'],
             'business_phone' => ['nullable', 'string', 'max:50'],
             'type_of_business' => ['nullable', Rule::in(['manufacturer', 'distributor', 'trader', 'service', 'cooperative', 'other'])],
             'type_of_business_detail' => ['nullable', 'string', 'max:255'],
@@ -52,7 +52,7 @@ class UpdateCompanyProfileRequest extends FormRequest
             'contacts.*.name' => ['nullable', 'string', 'max:255'],
             'contacts.*.position' => ['nullable', 'string', 'max:255'],
             'contacts.*.phone' => ['nullable', 'string', 'max:50'],
-            'contacts.*.email' => ['nullable', 'email:rfc,dns', 'max:255'],
+            'contacts.*.email' => ['nullable', 'email', 'max:255'],
         ];
     }
 
