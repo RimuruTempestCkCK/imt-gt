@@ -73,21 +73,42 @@ class CompanyProfileController extends Controller
 
             unset($data['logo'], $data['npwp_document'], $data['nib_document']);
 
+            $userUpdates = [
+                'country_id' => $request->integer('country_id') ?: $user->country_id,
+                'region_id' => $request->integer('region_id') ?: $user->region_id,
+                'province' => $region->name,
+            ];
+
+            if ($request->filled('name')) {
+                $userUpdates['name'] = $request->string('name')->toString();
+            } elseif ($request->filled('contacts.0.name')) {
+                $userUpdates['name'] = $request->string('contacts.0.name')->toString();
+            }
+
+            if ($request->filled('account_email')) {
+                $userUpdates['email'] = $request->string('account_email')->toString();
+            }
+
+            if ($request->filled('password')) {
+                $userUpdates['password'] = $request->string('password')->toString();
+            }
+
+            $user->forceFill($userUpdates)->save();
+
+            // Clean user-specific fields before filling company profile
+            unset($data['name'], $data['account_email'], $data['password'], $data['password_confirmation']);
+
+            $contactsData = $data['contacts'] ?? [];
+            unset($data['contacts']);
+
             $profile->fill($data);
             $profile->province = $region->name;
             $profile->profile_completed_at = now();
             $profile->save();
 
-            $user->forceFill([
-                'name' => $request->string('contacts.0.name')->toString() ?: $user->name,
-                'country_id' => $request->integer('country_id') ?: $user->country_id,
-                'region_id' => $request->integer('region_id') ?: $user->region_id,
-                'province' => $region->name,
-            ])->save();
-
             $profile->contacts()->delete();
 
-            collect($data['contacts'] ?? [])
+            collect($contactsData)
                 ->filter(fn (array $contact) => filled($contact['name'] ?? null))
                 ->values()
                 ->each(function (array $contact, int $index) use ($profile): void {
@@ -108,7 +129,7 @@ class CompanyProfileController extends Controller
         });
 
         return redirect()->route('account.company-profile.edit')->with('status', app()->isLocale('en')
-            ? 'Company profile saved successfully.'
-            : 'Profil perusahaan berhasil disimpan.');
+            ? 'Company profile and account information saved successfully.'
+            : 'Profil perusahaan dan informasi akun berhasil disimpan.');
     }
 }

@@ -15,6 +15,9 @@ class UpdateCompanyProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => ['nullable', 'string', 'max:255'],
+            'account_email' => ['nullable', 'email:rfc,dns', 'max:255', Rule::unique('users', 'email')->ignore($this->user()->id)],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'company_prefix' => ['nullable', Rule::in(['PT', 'CV', 'UD', 'FA', 'Koperasi', 'Others', 'PD'])],
             'company_name' => ['required', 'string', 'max:255'],
             'year_of_establishment' => ['nullable', 'integer', 'min:1900', 'max:2100'],
@@ -50,6 +53,22 @@ class UpdateCompanyProfileRequest extends FormRequest
             'contacts.*.position' => ['nullable', 'string', 'max:255'],
             'contacts.*.phone' => ['nullable', 'string', 'max:50'],
             'contacts.*.email' => ['nullable', 'email:rfc,dns', 'max:255'],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'Nama Akun / PIC',
+            'account_email' => 'Email Akun',
+            'password' => 'Password Baru',
+            'company_name' => 'Nama Perusahaan',
+            'company_prefix' => 'Bentuk Usaha / Badan Hukum',
+            'country_id' => 'Negara',
+            'region_id' => 'Provinsi / State',
+            'logo' => 'Logo Perusahaan',
+            'npwp_document' => 'Dokumen NPWP',
+            'nib_document' => 'Dokumen NIB',
         ];
     }
 
