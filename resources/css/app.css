@@ -1,0 +1,417 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    :root {
+        --color-primary-950: #06163a;
+        --color-primary-900: #122244;
+        --color-primary-800: #14203f;
+        --color-primary-700: #304275;
+        --color-primary-600: #3d528a;
+
+        --color-brand-red: #bc291e;
+        --color-brand-red-hover: #9f2119;
+        --color-brand-red-light: #e31b23;
+
+        --color-action-green: #39b972;
+        --color-action-green-hover: #2d9660;
+        --color-action-green-light: #e6f7ee;
+
+        --color-pillar-yellow: #fbc236;
+        --color-pillar-coral: #f05054;
+        --color-pillar-teal: #00705b;
+        --color-pillar-orange: #f69535;
+
+        --color-white: #ffffff;
+        --color-background: #efefef;
+        --color-surface: #ffffff;
+        --color-surface-soft: #f7f7f8;
+        --color-placeholder: #bababa;
+        --color-border: #dcdde3;
+
+        --color-text-primary: #14203f;
+        --color-text-secondary: #505c74;
+        --color-text-muted: #7f8799;
+        --color-text-inverse: #ffffff;
+
+        --overlay-card: linear-gradient(180deg, rgba(18, 34, 68, 0.68) 0%, rgba(6, 22, 58, 0.9) 100%);
+        --overlay-hero: linear-gradient(90deg, rgba(6, 22, 58, 0.12), rgba(6, 22, 58, 0.04));
+
+        --shadow-sm: 0 4px 12px rgba(18, 34, 68, 0.06);
+        --shadow-md: 0 10px 30px rgba(18, 34, 68, 0.1);
+        --shadow-lg: 0 18px 45px rgba(18, 34, 68, 0.14);
+
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --radius-xl: 30px;
+        --radius-pill: 999px;
+
+        --transition-fast: 180ms ease;
+        --transition-normal: 300ms ease;
+
+        --imtgt-shell: var(--color-primary-950);
+        --imtgt-panel: rgba(18, 34, 68, 0.88);
+        --imtgt-panel-soft: rgba(255, 255, 255, 0.06);
+        --imtgt-accent: var(--color-action-green);
+        --imtgt-accent-strong: var(--color-brand-red);
+        --imtgt-text: var(--color-text-inverse);
+        --imtgt-muted: #b8c0d3;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        color: var(--imtgt-text);
+        background:
+            radial-gradient(circle at top, rgba(188, 41, 30, 0.12), transparent 24rem),
+            linear-gradient(180deg, var(--color-primary-950) 0%, var(--color-primary-900) 45%, var(--color-primary-950) 100%);
+    }
+}
+
+@layer components {
+    .hero-stage {
+        position: relative;
+        width: 100%;
+        perspective: 1200px;
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+            opacity 0.7s ease,
+            transform 0.7s ease;
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .service-orb {
+        position: relative;
+        min-height: 16rem;
+        border-radius: 9999px;
+        padding: 1px;
+        background: linear-gradient(145deg, rgba(103, 232, 249, 0.55), rgba(255, 255, 255, 0.08));
+        box-shadow:
+            0 20px 60px rgba(2, 6, 23, 0.35),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .service-orb__inner {
+        display: flex;
+        height: 100%;
+        min-height: 16rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background:
+            radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 45%),
+            rgba(15, 23, 42, 0.88);
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .opportunity-card {
+        overflow: hidden;
+        border-radius: 1.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(20px);
+    }
+
+    .opportunity-card__visual {
+        height: 12rem;
+    }
+
+    .opportunity-card__content {
+        padding: 1.5rem;
+    }
+
+    .imtgt-shell {
+        min-height: 100vh;
+        background:
+            radial-gradient(circle at top right, rgba(188, 41, 30, 0.16), transparent 20rem),
+            linear-gradient(180deg, rgba(6, 22, 58, 0.98), rgba(18, 34, 68, 0.96));
+    }
+
+    .imtgt-card {
+        border: 1px solid rgba(220, 221, 227, 0.9);
+        border-radius: var(--radius-lg);
+        background: var(--imtgt-panel-soft);
+        backdrop-filter: blur(18px);
+    }
+
+    .imtgt-input {
+        width: 100%;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(220, 221, 227, 0.95);
+        background: rgba(255, 255, 255, 0.92);
+        padding: 0.95rem 1rem;
+        color: var(--color-text-primary);
+        outline: none;
+    }
+
+    .imtgt-input::placeholder {
+        color: var(--color-placeholder);
+    }
+
+    .imtgt-input:focus {
+        border-color: rgba(61, 82, 138, 0.55);
+        box-shadow: 0 0 0 3px rgba(61, 82, 138, 0.12);
+    }
+
+    .imtgt-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 0.85rem 1.35rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        transition:
+            transform var(--transition-fast),
+            background-color var(--transition-fast),
+            border-color var(--transition-fast),
+            color var(--transition-fast),
+            box-shadow var(--transition-fast);
+    }
+
+    .imtgt-button:hover {
+        transform: translateY(-1px);
+    }
+
+    .imtgt-button-primary {
+        background: var(--color-action-green);
+        color: var(--color-text-inverse);
+        box-shadow: var(--shadow-md);
+    }
+
+    .imtgt-button-primary:hover {
+        background: var(--color-action-green-hover);
+    }
+
+    .imtgt-button-secondary {
+        border: 1px solid rgba(220, 221, 227, 0.95);
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .section-frame {
+        border: 1px solid rgba(220, 221, 227, 0.95);
+        border-radius: 2rem;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(20px);
+    }
+
+    .imtgt-nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: var(--radius-pill);
+        padding: 0.7rem 1rem;
+        color: rgba(255, 255, 255, 0.88);
+        transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .imtgt-nav-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--color-white);
+    }
+
+    .imtgt-nav-link.is-active {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--color-white);
+    }
+
+    .imtgt-nav-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: var(--radius-pill);
+        padding: 0.7rem 1rem;
+        color: rgba(255, 255, 255, 0.88);
+        transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .imtgt-nav-trigger:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--color-white);
+    }
+
+    .imtgt-nav-trigger.is-active {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--color-white);
+    }
+
+    .imtgt-nav-dropdown {
+        border: 1px solid rgba(220, 221, 227, 0.95);
+        border-radius: 22px;
+        background: var(--color-surface);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .imtgt-nav-dropdown-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid transparent;
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        color: var(--color-text-primary);
+        transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .imtgt-nav-dropdown-link:hover {
+        border-color: rgba(220, 221, 227, 0.95);
+        background: var(--color-surface-soft);
+        color: var(--color-brand-red);
+    }
+
+    .imtgt-nav-dropdown-link.is-active {
+        border-color: rgba(188, 41, 30, 0.1);
+        background: rgba(188, 41, 30, 0.06);
+        color: var(--color-brand-red);
+    }
+
+    .guest-light .imtgt-card,
+    .guest-light main article,
+    .guest-light footer article {
+        border-color: var(--color-border);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: var(--shadow-md);
+    }
+
+    .guest-light .imtgt-button-secondary {
+        border-color: var(--color-border);
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+    }
+
+    .guest-light .imtgt-input {
+        border-color: var(--color-border);
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+    }
+
+    .guest-light .imtgt-input::placeholder {
+        color: var(--color-placeholder);
+    }
+
+    .guest-light .text-cyan-700,
+    .guest-light .text-cyan-800,
+    .guest-light .text-cyan-600,
+    .guest-light .text-cyan-500 {
+        color: var(--color-brand-red) !important;
+    }
+
+    .guest-light .text-cyan-200,
+    .guest-light .text-cyan-300 {
+        color: var(--color-brand-red-light) !important;
+    }
+
+    .guest-light .bg-cyan-50,
+    .guest-light .bg-cyan-50\/40 {
+        background-color: rgba(188, 41, 30, 0.08) !important;
+    }
+
+    .guest-light .bg-cyan-600,
+    .guest-light .bg-cyan-600\/90 {
+        background-color: var(--color-brand-red) !important;
+    }
+
+    .guest-light .hover\:bg-cyan-700:hover,
+    .guest-light .hover\:bg-cyan-800:hover {
+        background-color: var(--color-brand-red-hover) !important;
+    }
+
+    .guest-light .border-cyan-100,
+    .guest-light .border-cyan-200,
+    .guest-light .border-cyan-300 {
+        border-color: rgba(188, 41, 30, 0.14) !important;
+    }
+
+    .guest-light .hover\:border-cyan-200:hover,
+    .guest-light .hover\:border-cyan-300:hover {
+        border-color: rgba(188, 41, 30, 0.22) !important;
+    }
+
+    .guest-light .focus\:border-cyan-500:focus,
+    .guest-light .focus\:ring-cyan-100:focus,
+    .guest-light .focus\:ring-cyan-500:focus {
+        border-color: rgba(188, 41, 30, 0.45) !important;
+        box-shadow: 0 0 0 3px rgba(188, 41, 30, 0.12) !important;
+    }
+
+    .guest-light .shadow-cyan-200,
+    .guest-light .shadow-cyan-300\/20 {
+        --tw-shadow-color: rgba(188, 41, 30, 0.18) !important;
+    }
+
+    .guest-light .hover\:text-cyan-700:hover,
+    .guest-light .hover\:text-cyan-800:hover,
+    .guest-light .hover\:text-cyan-200:hover {
+        color: var(--color-brand-red) !important;
+    }
+
+    .guest-light main h1,
+    .guest-light main h2,
+    .guest-light main h3,
+    .guest-light main p,
+    .guest-light main li,
+    .guest-light main label,
+    .guest-light footer h2,
+    .guest-light footer p {
+        color: var(--color-text-primary) !important;
+    }
+
+    .guest-light main .text-slate-300,
+    .guest-light main .text-slate-300\/76,
+    .guest-light main .text-slate-300\/78,
+    .guest-light main .text-slate-400,
+    .guest-light main .text-slate-200\/76,
+    .guest-light main .text-slate-200\/78,
+    .guest-light footer .text-slate-300\/75,
+    .guest-light footer .text-slate-200\/76 {
+        color: var(--color-text-secondary) !important;
+    }
+}
+
+@layer utilities {
+    .parallax-layer {
+        will-change: transform;
+        transition: transform 0.12s linear;
+    }
+
+    .parallax-float {
+        animation: floaty 7s ease-in-out infinite;
+    }
+}
+
+@keyframes floaty {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -14px, 0);
+    }
+}
