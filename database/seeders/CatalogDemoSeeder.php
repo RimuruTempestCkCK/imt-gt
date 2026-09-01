@@ -366,5 +366,48 @@ class CatalogDemoSeeder extends Seeder
                 );
             }
         }
+
+        // --- IMAGE SEEDING LOGIC ---
+        $dummyDir = base_path('dummy img');
+        if (\Illuminate\Support\Facades\File::exists($dummyDir)) {
+            $files = \Illuminate\Support\Facades\File::files($dummyDir);
+            if (!empty($files)) {
+                
+                // Set uniform logo for all company profiles
+                $logoCandidates = array_filter($files, fn($f) => str_contains($f->getFilename(), 'ChatGPT Image'));
+                $logoFile = !empty($logoCandidates) ? reset($logoCandidates) : $files[array_rand($files)];
+                
+                $logoExt = $logoFile->getExtension();
+                $logoFilename = \Illuminate\Support\Str::uuid() . '.' . $logoExt;
+                $logoDest = storage_path('app/public/company-profiles/logos/' . $logoFilename);
+                
+                \Illuminate\Support\Facades\Storage::disk('public')->makeDirectory('company-profiles/logos');
+                \Illuminate\Support\Facades\File::copy($logoFile->getPathname(), $logoDest);
+                
+                CompanyProfile::query()->update(['logo_path' => 'company-profiles/logos/' . $logoFilename]);
+
+                // Seed random product images
+                \App\Models\ProductImage::truncate();
+                \Illuminate\Support\Facades\Storage::disk('public')->deleteDirectory('products/images');
+                \Illuminate\Support\Facades\Storage::disk('public')->makeDirectory('products/images');
+
+                $products = Product::all();
+                foreach ($products as $product) {
+                    $file = $files[array_rand($files)];
+                    $ext = $file->getExtension();
+                    $filename = \Illuminate\Support\Str::uuid() . '.' . $ext;
+                    
+                    $destPath = storage_path('app/public/products/images/' . $filename);
+                    \Illuminate\Support\Facades\File::copy($file->getPathname(), $destPath);
+                    
+                    \App\Models\ProductImage::create([
+                        'product_id' => $product->id,
+                        'path' => 'products/images/' . $filename,
+                        'sort_order' => 1,
+                        'is_primary' => true,
+                    ]);
+                }
+            }
+        }
     }
 }
