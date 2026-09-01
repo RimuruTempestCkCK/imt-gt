@@ -44,9 +44,9 @@ class UpdateCompanyProfileRequest extends FormRequest
             'longitude' => ['nullable', 'numeric', 'between:-180,180'],
             'latitude' => ['nullable', 'numeric', 'between:-90,90'],
             'logo' => ['nullable', 'image', 'max:2048'],
-            'npwp_number' => ['nullable', 'string', 'max:32'],
+            'npwp_number' => ['required', 'string', 'max:32'],
             'npwp_document' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:4096'],
-            'nib_number' => ['nullable', 'string', 'max:64'],
+            'nib_number' => ['required', 'string', 'max:64'],
             'nib_document' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:4096'],
             'contacts' => ['nullable', 'array'],
             'contacts.*.name' => ['nullable', 'string', 'max:255'],
@@ -76,6 +76,14 @@ class UpdateCompanyProfileRequest extends FormRequest
     {
         $validator->sometimes('company_prefix', ['required'], function () {
             return auth()->user()?->account_type === 'supplier';
+        });
+
+        $validator->sometimes('npwp_document', ['required'], function () {
+            return blank(auth()->user()?->companyProfile?->npwp_document_path);
+        });
+
+        $validator->sometimes('nib_document', ['required'], function () {
+            return blank(auth()->user()?->companyProfile?->nib_document_path);
         });
 
         $validator->after(function ($validator) {

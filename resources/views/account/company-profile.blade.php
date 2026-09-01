@@ -389,40 +389,52 @@
                 <div class="grid gap-6 md:grid-cols-2">
                     <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
                         <div class="mb-4 flex items-center justify-between">
-                            <label class="text-sm font-semibold text-slate-900">1. NPWP (Nomor Pokok Wajib Pajak)</label>
+                            <label class="text-sm font-semibold text-slate-900">
+                                1. NPWP (Nomor Pokok Wajib Pajak)
+                                <span class="text-rose-500">*</span>
+                            </label>
                             @if ($profile->npwp_document_path)
-                                <a href="{{ asset('storage/'.$profile->npwp_document_path) }}" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-200">
+                                <a href="{{ asset('storage/'.$profile->npwp_document_path) }}" onclick="openFileViewer(this.href); return false;" class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-200">
                                     <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                     <span>{{ $isEnglish ? 'View File' : 'Lihat File' }}</span>
                                 </a>
                             @endif
                         </div>
                         <div class="space-y-3">
-                            <input name="npwp_number" value="{{ old('npwp_number', $profile->npwp_number) }}" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100" placeholder="{{ $isEnglish ? 'NPWP Number (digits only)' : 'Nomor NPWP (angka saja)' }}">
+                            <input name="npwp_number" value="{{ old('npwp_number', $profile->npwp_number) }}" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100" placeholder="{{ $isEnglish ? 'NPWP Number (digits only)' : 'Nomor NPWP (angka saja)' }}" required>
                             @error('npwp_number')<p class="text-xs text-rose-600">{{ $message }}</p>@enderror
 
-                            <label class="block text-xs font-medium text-slate-600">{{ $isEnglish ? 'Upload NPWP Document (PDF, JPG, PNG)' : 'Unggah Dokumen NPWP (PDF, JPG, PNG)' }}</label>
-                            <input type="file" name="npwp_document" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-full file:border-0 file:bg-cyan-50 file:px-4 file:py-1 file:text-xs file:font-semibold file:text-cyan-700 hover:file:bg-cyan-100">
+                            <label class="block text-xs font-medium text-slate-600">
+                                {{ $isEnglish ? 'Upload NPWP Document (PDF, JPG, PNG)' : 'Unggah Dokumen NPWP (PDF, JPG, PNG)' }}
+                                @if (!$profile->npwp_document_path) <span class="text-rose-500">*</span> @endif
+                            </label>
+                            <input type="file" name="npwp_document" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-full file:border-0 file:bg-cyan-50 file:px-4 file:py-1 file:text-xs file:font-semibold file:text-cyan-700 hover:file:bg-cyan-100" {{ !$profile->npwp_document_path ? 'required' : '' }}>
                             @error('npwp_document')<p class="text-xs text-rose-600">{{ $message }}</p>@enderror
                         </div>
                     </div>
 
                     <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5">
                         <div class="mb-4 flex items-center justify-between">
-                            <label class="text-sm font-semibold text-slate-900">2. NIB (Nomor Induk Berusaha)</label>
+                            <label class="text-sm font-semibold text-slate-900">
+                                2. NIB (Nomor Induk Berusaha)
+                                <span class="text-rose-500">*</span>
+                            </label>
                             @if ($profile->nib_document_path)
-                                <a href="{{ asset('storage/'.$profile->nib_document_path) }}" target="_blank" class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-200">
+                                <a href="{{ asset('storage/'.$profile->nib_document_path) }}" onclick="openFileViewer(this.href); return false;" class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-200">
                                     <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                     <span>{{ $isEnglish ? 'View File' : 'Lihat File' }}</span>
                                 </a>
                             @endif
                         </div>
                         <div class="space-y-3">
-                            <input name="nib_number" value="{{ old('nib_number', $profile->nib_number) }}" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100" placeholder="{{ $isEnglish ? 'NIB Number' : 'Nomor NIB' }}">
+                            <input name="nib_number" value="{{ old('nib_number', $profile->nib_number) }}" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-100" placeholder="{{ $isEnglish ? 'NIB Number' : 'Nomor NIB' }}" required>
                             @error('nib_number')<p class="text-xs text-rose-600">{{ $message }}</p>@enderror
 
-                            <label class="block text-xs font-medium text-slate-600">{{ $isEnglish ? 'Upload NIB Document (PDF, JPG, PNG)' : 'Unggah Dokumen NIB (PDF, JPG, PNG)' }}</label>
-                            <input type="file" name="nib_document" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-full file:border-0 file:bg-cyan-50 file:px-4 file:py-1 file:text-xs file:font-semibold file:text-cyan-700 hover:file:bg-cyan-100">
+                            <label class="block text-xs font-medium text-slate-600">
+                                {{ $isEnglish ? 'Upload NIB Document (PDF, JPG, PNG)' : 'Unggah Dokumen NIB (PDF, JPG, PNG)' }}
+                                @if (!$profile->nib_document_path) <span class="text-rose-500">*</span> @endif
+                            </label>
+                            <input type="file" name="nib_document" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 file:mr-4 file:rounded-full file:border-0 file:bg-cyan-50 file:px-4 file:py-1 file:text-xs file:font-semibold file:text-cyan-700 hover:file:bg-cyan-100" {{ !$profile->nib_document_path ? 'required' : '' }}>
                             @error('nib_document')<p class="text-xs text-rose-600">{{ $message }}</p>@enderror
                         </div>
                     </div>
@@ -488,6 +500,56 @@
             </div>
         </form>
     </div>
+
+    {{-- FILE VIEWER MODAL --}}
+    <div id="file-viewer-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm transition-opacity">
+        <div class="relative flex h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+                <h3 class="text-lg font-semibold text-slate-900">{{ $isEnglish ? 'Document Viewer' : 'Penampil Dokumen' }}</h3>
+                <div class="flex items-center gap-4">
+                    <button type="button" onclick="closeFileViewer()" class="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900" title="{{ $isEnglish ? 'Close' : 'Tutup' }}">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="file-viewer-container" class="flex flex-1 items-center justify-center overflow-auto bg-slate-100 p-0">
+                <!-- Content dynamically injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openFileViewer(url) {
+            const container = document.getElementById('file-viewer-container');
+            container.innerHTML = ''; // clear previous content
+
+            // Check if URL is an image
+            if (url.toLowerCase().match(/\.(jpeg|jpg|gif|png|webp|bmp)$/)) {
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'max-h-full max-w-full object-contain';
+                container.appendChild(img);
+            } else {
+                // For PDF and others, use object/embed
+                const embed = document.createElement('embed');
+                embed.src = url;
+                embed.type = 'application/pdf';
+                embed.className = 'h-full w-full';
+                container.appendChild(embed);
+            }
+
+            document.getElementById('file-viewer-modal').classList.remove('hidden');
+            document.getElementById('file-viewer-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFileViewer() {
+            document.getElementById('file-viewer-container').innerHTML = '';
+            document.getElementById('file-viewer-modal').classList.add('hidden');
+            document.getElementById('file-viewer-modal').classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+    </script>
 
     {{-- TEMPLATE FOR NEW CONTACT --}}
     <template id="contact-template">
