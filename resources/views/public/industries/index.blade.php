@@ -97,7 +97,7 @@
                                     <div class="flex items-center gap-4">
                                         <div class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-sm">
                                             @if ($industry->logo_path)
-                                                <img src="{{ asset('storage/'.$industry->logo_path) }}" alt="{{ $industry->company_name }}" class="h-full w-full object-cover">
+                                                <img src="{{ asset('storage/'.$industry->logo_path) }}" alt="{{ $industry->company_name }}" class="h-full w-full object-contain p-1.5">
                                             @else
                                                 <svg viewBox="0 0 64 64" class="h-10 w-10 text-slate-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="22" r="12"/><path d="M12 58c3-14 11-22 20-22s17 8 20 22H12Z"/></svg>
                                             @endif
