@@ -75,9 +75,8 @@ Route::middleware('auth')->group(function () {
             ->middleware('permission:users.view')
             ->name('business-registrations.reject');
 
-        Route::get('/users', [UserController::class, 'index'])
-            ->middleware('permission:users.view')
-            ->name('users.index');
+        Route::resource('users', UserController::class)
+            ->middleware('permission:users.view');
 
         Route::get('/access', [AccessController::class, 'index'])
             ->middleware('permission:roles.view,permissions.view')
