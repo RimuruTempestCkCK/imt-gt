@@ -57,13 +57,13 @@ IMT-GT (Indonesia–Malaysia–Thailand Growth Triangle) Business Marketplace ad
    ```
 
 6. **Migrasi Database & Seeding**
-   Jalankan perintah ini untuk membuat struktur tabel di database Anda (tambahkan opsi `--seed` jika Anda memiliki data awal):
+   Jalankan perintah ini untuk membuat struktur tabel di database beserta data awal (termasuk akun demo admin dan supplier):
    ```bash
-   php artisan migrate
+   php artisan migrate:fresh --seed
    ```
 
 7. **Kaitkan Storage (Symlink)**
-   Agar gambar/file hasil *upload* dapat diakses oleh publik:
+   Agar gambar/file hasil *upload* (termasuk logo perusahaan, foto produk, dan dokumen NPWP/NIB) dapat diakses oleh publik:
    ```bash
    php artisan storage:link
    ```
@@ -85,9 +85,20 @@ IMT-GT (Indonesia–Malaysia–Thailand Growth Triangle) Business Marketplace ad
    ```
    Aplikasi sekarang dapat diakses melalui browser pada alamat `http://localhost:8000`
 
+## 🔑 Akun Demo (Testing)
+
+Setelah menjalankan proses seeding (`php artisan migrate:fresh --seed`), Anda bisa login menggunakan akun-akun berikut (semua password adalah `password`):
+
+| Role | Email | Password |
+|---|---|---|
+| **Super Admin** | `admin@imtgt.test` | `password` |
+| **Supplier (ID)** | `supplier.riau@imtgt.test` | `password` |
+| **Supplier (MY)** | `supplier.malaysia@imtgt.test` | `password` |
+| **Supplier (TH)** | `supplier.thailand@imtgt.test` | `password` |
+
 ## 👥 Pengguna Sistem (Roles)
 
-- **Admin:** Memiliki kontrol penuh mengelola CMS, menyetujui perusahaan baru, mengelola konten, dll.
-- **Supplier (Pelaku Usaha):** Mendaftarkan profil perusahaannya, mengunggah katalog produk, dan merespons *inquiry*.
+- **Admin:** Memiliki kontrol penuh mengelola CMS, menyetujui perusahaan baru, mengelola konten, dll. (Akses via `/admin/dashboard`)
+- **Supplier (Pelaku Usaha):** Mendaftarkan profil perusahaannya (termasuk melengkapi legalitas NPWP/NIB), mengunggah katalog produk, dan merespons *inquiry*. (Akses via `/akun/dashboard`)
 - **Buyer:** Pihak yang mencari produk atau perusahaan dan dapat mengirimkan *inquiry* kerja sama.
 - **Guest / Publik:** Dapat mencari produk, melihat profil supplier publik, dan membaca berita tanpa perlu login.
