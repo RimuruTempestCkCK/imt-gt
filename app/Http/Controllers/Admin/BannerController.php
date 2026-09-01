@@ -9,6 +9,7 @@ use App\Models\MediaItem;
 use App\Support\AuditLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
@@ -16,20 +17,45 @@ class BannerController extends Controller
     {
         return view('admin.cms.banners.index', [
             'banners' => Banner::query()->with('media')->orderBy('sort_order')->paginate(12),
-        ]);
-    }
-
-    public function create(): View
-    {
-        return view('admin.cms.banners.create', [
             'mediaItems' => MediaItem::query()->orderBy('title')->get(),
         ]);
     }
 
-    public function store(StoreBannerRequest $request): RedirectResponse
+    // create view removed, handled by modal
+    public function store(Request $request): RedirectResponse
     {
+        $validated = $request->validate([
+            'image' => ['nullable', 'image', 'max:2048'],
+            'media_item_id' => ['nullable', 'exists:media_items,id'],
+            'title' => ['required', 'string', 'max:160'],
+            'subtitle' => ['nullable', 'string'],
+            'cta_label' => ['nullable', 'string', 'max:80'],
+            'cta_url' => ['nullable', 'string', 'max:255'],
+            'sort_order' => ['required', 'integer', 'min:1'],
+            'is_active' => ['nullable', 'boolean'],
+        ]);
+
+        $mediaItemId = $validated['media_item_id'] ?? null;
+
+        // If user uploaded a new image, create MediaItem on the fly
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('banners', 'public');
+            $media = MediaItem::create([
+                'title' => 'Banner ' . $validated['title'],
+                'type' => 'image',
+                'source_url' => asset('storage/' . $path),
+                'alt_text' => $validated['title'],
+            ]);
+            $mediaItemId = $media->id;
+        }
+
         $banner = Banner::query()->create([
-            ...$request->validated(),
+            'media_item_id' => $mediaItemId,
+            'title' => $validated['title'],
+            'subtitle' => $validated['subtitle'],
+            'cta_label' => $validated['cta_label'],
+            'cta_url' => $validated['cta_url'],
+            'sort_order' => $validated['sort_order'],
             'is_active' => $request->boolean('is_active'),
         ]);
 
@@ -38,18 +64,41 @@ class BannerController extends Controller
         return redirect()->route('admin.banners.index')->with('status', 'Banner berhasil dibuat.');
     }
 
-    public function edit(Banner $banner): View
-    {
-        return view('admin.cms.banners.edit', [
-            'banner' => $banner,
-            'mediaItems' => MediaItem::query()->orderBy('title')->get(),
-        ]);
-    }
+    // edit view removed, handled by modal
 
-    public function update(StoreBannerRequest $request, Banner $banner): RedirectResponse
+    public function update(Request $request, Banner $banner): RedirectResponse
     {
+        $validated = $request->validate([
+            'image' => ['nullable', 'image', 'max:2048'],
+            'media_item_id' => ['nullable', 'exists:media_items,id'],
+            'title' => ['required', 'string', 'max:160'],
+            'subtitle' => ['nullable', 'string'],
+            'cta_label' => ['nullable', 'string', 'max:80'],
+            'cta_url' => ['nullable', 'string', 'max:255'],
+            'sort_order' => ['required', 'integer', 'min:1'],
+            'is_active' => ['nullable', 'boolean'],
+        ]);
+
+        $mediaItemId = $validated['media_item_id'] ?? $banner->media_item_id;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('banners', 'public');
+            $media = MediaItem::create([
+                'title' => 'Banner ' . $validated['title'],
+                'type' => 'image',
+                'source_url' => asset('storage/' . $path),
+                'alt_text' => $validated['title'],
+            ]);
+            $mediaItemId = $media->id;
+        }
+
         $banner->update([
-            ...$request->validated(),
+            'media_item_id' => $mediaItemId,
+            'title' => $validated['title'],
+            'subtitle' => $validated['subtitle'],
+            'cta_label' => $validated['cta_label'],
+            'cta_url' => $validated['cta_url'],
+            'sort_order' => $validated['sort_order'],
             'is_active' => $request->boolean('is_active'),
         ]);
 

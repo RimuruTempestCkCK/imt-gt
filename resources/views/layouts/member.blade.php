@@ -21,13 +21,13 @@
 
             <nav class="mt-8 space-y-2 text-sm">
                 <div class="pt-2 text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">{{ app()->isLocale('en') ? 'Member Menu' : 'Menu Member' }}</div>
-                <a href="{{ route('account.dashboard') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.dashboard') ? 'bg-slate-100 text-slate-900 font-semibold border border-slate-200' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                <a href="{{ route('account.dashboard') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.dashboard') ? 'bg-cyan-50 text-cyan-800 font-bold border border-cyan-100 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 group flex items-center' }}">
                     Dashboard
                 </a>
-                <a href="{{ route('account.products.index') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.products.*') ? 'bg-slate-100 text-slate-900 font-semibold border border-slate-200' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                <a href="{{ route('account.products.index') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.products.*') ? 'bg-cyan-50 text-cyan-800 font-bold border border-cyan-100 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 group flex items-center' }}">
                     {{ app()->isLocale('en') ? 'My Products' : 'Produk Saya' }}
                 </a>
-                <a href="{{ route('account.company-profile.edit') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.company-profile.*') ? 'bg-slate-100 text-slate-900 font-semibold border border-slate-200' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
+                <a href="{{ route('account.company-profile.edit') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.company-profile.*') ? 'bg-cyan-50 text-cyan-800 font-bold border border-cyan-100 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 group flex items-center' }}">
                     {{ app()->isLocale('en') ? 'Company Profile' : 'Profil Perusahaan' }}
                 </a>
             </nav>

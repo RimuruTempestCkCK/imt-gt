@@ -20,16 +20,11 @@ class UserController extends Controller
 
         return view('admin.users.index', [
             'users' => User::query()->with('roles')->latest()->paginate(12),
+            'roles' => Role::orderBy('name')->get(),
         ]);
     }
 
-    public function create(): View
-    {
-        $this->authorize('create', User::class);
-        $roles = Role::orderBy('name')->get();
-
-        return view('admin.users.create', compact('roles'));
-    }
+    // Modal uses index directly, no create view needed
 
     public function store(Request $request): RedirectResponse
     {
@@ -59,13 +54,7 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('status', 'User berhasil dibuat.');
     }
 
-    public function edit(User $user): View
-    {
-        $this->authorize('update', $user);
-        $roles = Role::orderBy('name')->get();
-
-        return view('admin.users.edit', compact('user', 'roles'));
-    }
+    // Modal uses index directly, no edit view needed
 
     public function update(Request $request, User $user): RedirectResponse
     {
