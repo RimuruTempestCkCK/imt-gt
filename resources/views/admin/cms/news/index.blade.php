@@ -31,7 +31,7 @@
                                     <a href="{{ route('admin.news.edit', $newsPost) }}" class="text-cyan-300">Edit</a>
                                     <form method="POST" action="{{ route('admin.news.destroy', $newsPost) }}">
                                         @csrf @method('DELETE')
-                                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus berita ini?')">Hapus</button>
+                                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus berita ini?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>

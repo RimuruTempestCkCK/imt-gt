@@ -27,7 +27,7 @@
                                     <a href="{{ route('admin.tags.edit', $tag) }}" class="text-cyan-300">Edit</a>
                                     <form method="POST" action="{{ route('admin.tags.destroy', $tag) }}">
                                         @csrf @method('DELETE')
-                                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus tag ini?')">Hapus</button>
+                                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus tag ini?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>

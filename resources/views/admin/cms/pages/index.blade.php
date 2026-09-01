@@ -29,7 +29,7 @@
                                     <a href="{{ route('admin.pages.edit', $page) }}" class="text-cyan-300">Edit</a>
                                     <form method="POST" action="{{ route('admin.pages.destroy', $page) }}">
                                         @csrf @method('DELETE')
-                                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus halaman ini?')">Hapus</button>
+                                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus halaman ini?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>

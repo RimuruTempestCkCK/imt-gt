@@ -32,7 +32,7 @@
                                 <form method="POST" action="{{ route('admin.product-categories.destroy', $category) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="text-rose-300" type="submit" onclick="return confirm('Hapus kategori produk ini?')">Hapus</button>
+                                    <button class="text-rose-600" type="submit" onclick="return confirm('Hapus kategori produk ini?')">Hapus</button>
                                 </form>
                             </div>
                         </td>

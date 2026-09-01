@@ -19,7 +19,7 @@
                     <a href="{{ route('admin.media.edit', $mediaItem) }}" class="text-cyan-300">Edit</a>
                     <form method="POST" action="{{ route('admin.media.destroy', $mediaItem) }}">
                         @csrf @method('DELETE')
-                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus media ini?')">Hapus</button>
+                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus media ini?')">Hapus</button>
                     </form>
                 </div>
             </article>

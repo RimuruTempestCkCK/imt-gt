@@ -29,7 +29,7 @@
                                     <a href="{{ route('admin.categories.edit', $category) }}" class="text-cyan-300">Edit</a>
                                     <form method="POST" action="{{ route('admin.categories.destroy', $category) }}">
                                         @csrf @method('DELETE')
-                                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus kategori ini?')">Hapus</button>
+                                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus kategori ini?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>

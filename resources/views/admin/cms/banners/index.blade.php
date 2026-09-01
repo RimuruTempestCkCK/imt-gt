@@ -19,7 +19,7 @@
                     <a href="{{ route('admin.banners.edit', $banner) }}" class="text-cyan-300">Edit</a>
                     <form method="POST" action="{{ route('admin.banners.destroy', $banner) }}">
                         @csrf @method('DELETE')
-                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus banner ini?')">Hapus</button>
+                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus banner ini?')">Hapus</button>
                     </form>
                 </div>
             </article>

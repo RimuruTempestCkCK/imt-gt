@@ -17,7 +17,7 @@
                     <a href="{{ route('admin.greetings.edit', $greeting) }}" class="text-cyan-300">Edit</a>
                     <form method="POST" action="{{ route('admin.greetings.destroy', $greeting) }}">
                         @csrf @method('DELETE')
-                        <button class="text-rose-300" type="submit" onclick="return confirm('Hapus sambutan ini?')">Hapus</button>
+                        <button class="text-rose-600" type="submit" onclick="return confirm('Hapus sambutan ini?')">Hapus</button>
                     </form>
                 </div>
             </article>

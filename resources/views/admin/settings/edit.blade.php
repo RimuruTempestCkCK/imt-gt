@@ -31,7 +31,7 @@
                         <input id="{{ $key }}" name="{{ $key }}" type="text" value="{{ old($key, $settings[$key] ?? '') }}" class="imtgt-input">
                     @endif
                     @error($key)
-                        <p class="mt-2 text-sm text-rose-300">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
             @endforeach

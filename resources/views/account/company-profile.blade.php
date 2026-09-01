@@ -359,11 +359,11 @@
                                 @else
                                     <img id="logo-preview" src="" alt="Company logo" class="hidden h-full w-full object-contain p-2">
                                     <div id="logo-placeholder" class="grid place-items-center">
-                                        <svg viewBox="0 0 240 240" class="h-32 w-32 text-slate-300" fill="currentColor" aria-hidden="true">
+                                        <svg viewBox="0 0 240 240" class="h-32 w-32 text-slate-600" fill="currentColor" aria-hidden="true">
                                             <circle cx="120" cy="78" r="40"></circle>
                                             <path d="M50 214c5-46 31-72 70-72s65 26 70 72H50Z"></path>
                                         </svg>
-                                        <span class="mt-2 text-xs text-slate-400">{{ $isEnglish ? 'No logo uploaded' : 'Belum ada logo' }}</span>
+                                        <span class="mt-2 text-xs text-slate-500">{{ $isEnglish ? 'No logo uploaded' : 'Belum ada logo' }}</span>
                                     </div>
                                 @endif
                             </div>
@@ -436,7 +436,7 @@
                         <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-700">{{ $isEnglish ? 'Contact Persons' : 'Contact Person' }}</p>
                         <h2 class="mt-2 text-2xl font-semibold text-slate-950">{{ $isEnglish ? 'Company Representatives & Trade Contacts' : 'Daftar Kontak Penanggung Jawab' }}</h2>
                     </div>
-                    <button type="button" id="add-contact" class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow transition hover:bg-emerald-700">
+                    <button type="button" id="add-contact" class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-slate-900 shadow transition hover:bg-emerald-700">
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                         <span>{{ $isEnglish ? 'Add Contact' : 'Tambah Kontak' }}</span>
                     </button>
