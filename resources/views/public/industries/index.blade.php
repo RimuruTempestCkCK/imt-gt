@@ -92,14 +92,14 @@
 
                     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                         @forelse ($industries as $industry)
-                            <article class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(15,23,42,0.12)]">
+                            <article class="flex flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(15,23,42,0.12)]">
                                 <div class="border-b border-slate-100 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_100%)] p-5">
                                     <div class="flex items-center gap-4">
-                                        <div class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-sm">
+                                        <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-100">
                                             @if ($industry->logo_path)
                                                 <img src="{{ asset('storage/'.$industry->logo_path) }}" alt="{{ $industry->company_name }}" class="h-full w-full object-contain p-1.5">
                                             @else
-                                                <svg viewBox="0 0 64 64" class="h-10 w-10 text-slate-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="22" r="12"/><path d="M12 58c3-14 11-22 20-22s17 8 20 22H12Z"/></svg>
+                                                <svg viewBox="0 0 64 64" class="h-10 w-10 text-slate-300" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="22" r="12"/><path d="M12 58c3-14 11-22 20-22s17 8 20 22H12Z"/></svg>
                                             @endif
                                         </div>
                                         <div class="min-w-0">
@@ -109,37 +109,28 @@
                                     </div>
                                 </div>
 
-                                <div class="p-5">
-                                    <div class="flex flex-wrap gap-2">
+                                <div class="flex flex-1 flex-col p-5">
+                                    <div class="mb-4 flex flex-wrap gap-2">
                                         @if ($industry->type_of_business)
-                                            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{{ $businessTypes[$industry->type_of_business] ?? $industry->type_of_business }}</span>
+                                            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">{{ $businessTypes[$industry->type_of_business] ?? $industry->type_of_business }}</span>
                                         @endif
                                         @if ($industry->scale_of_business)
-                                            <span class="rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-700">{{ $industry->scale_of_business }}</span>
+                                            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 truncate max-w-[150px]">{{ $industry->scale_of_business }}</span>
                                         @endif
                                     </div>
 
-                                    <p class="mt-4 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($industry->company_description ?: ($industry->main_product ?: ''), 130) }}</p>
+                                    <p class="text-sm leading-6 text-slate-600 line-clamp-3">{{ $industry->company_description ?: ($industry->main_product ?: '-') }}</p>
 
-                                    <div class="mt-5 grid grid-cols-2 gap-3">
-                                        <div class="rounded-[1.2rem] bg-slate-50 p-3">
-                                            <p class="text-xs uppercase tracking-[0.22em] text-slate-400">{{ $isEnglish ? 'Main Product' : 'Produk Utama' }}</p>
-                                            <p class="mt-2 text-sm font-semibold text-slate-900">{{ $industry->main_product ?: '-' }}</p>
+                                    <div class="mt-auto pt-6">
+                                        <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+                                            <div>
+                                                <p class="text-xs text-slate-400">{{ $isEnglish ? 'Published Products' : 'Produk Publish' }}</p>
+                                                <p class="mt-0.5 text-sm font-semibold text-slate-900">{{ $industry->published_products_count }} <span class="font-normal text-slate-500">{{ $isEnglish ? 'Items' : 'Item' }}</span></p>
+                                            </div>
+                                            <a href="{{ route('public.industries.show', $industry) }}" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+                                                {{ $isEnglish ? 'View Profile' : 'Lihat Profil' }}
+                                            </a>
                                         </div>
-                                        <div class="rounded-[1.2rem] bg-slate-50 p-3">
-                                            <p class="text-xs uppercase tracking-[0.22em] text-slate-400">{{ $isEnglish ? 'Published Products' : 'Produk Publish' }}</p>
-                                            <p class="mt-2 text-sm font-semibold text-slate-900">{{ $industry->published_products_count }}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
-                                        <div>
-                                            <p class="text-xs uppercase tracking-[0.22em] text-slate-400">{{ $isEnglish ? 'Contact' : 'Kontak' }}</p>
-                                            <p class="mt-1 text-sm font-medium text-slate-800">{{ $industry->business_email ?: $industry->business_phone ?: '-' }}</p>
-                                        </div>
-                                        <a href="{{ route('public.industries.show', $industry) }}" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
-                                            {{ $isEnglish ? 'View Profile' : 'Lihat Profil' }}
-                                        </a>
                                     </div>
                                 </div>
                             </article>
