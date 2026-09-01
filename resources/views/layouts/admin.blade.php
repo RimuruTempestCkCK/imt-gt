@@ -4,7 +4,7 @@
 
 @section('body')
     <div class="min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
-        <aside class="border-b border-white/10 bg-slate-950/70 px-6 py-6 backdrop-blur-xl lg:border-b-0 lg:border-r">
+        <aside class="border-b border-white/10 bg-slate-950/70 px-6 py-6 backdrop-blur-xl lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-4">
                 <div class="flex h-12 w-28 items-center overflow-hidden rounded-xl bg-white px-2 py-1 shadow-[0_10px_25px_rgba(6,22,58,0.18)]">
                     <img
