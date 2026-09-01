@@ -48,13 +48,13 @@
                         </div>
                     </div>
 
-                    <div class="rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_100%)] p-6">
-                        <div class="flex items-center gap-5">
-                            <div class="flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.8rem] bg-white shadow-sm">
+                    <div class="rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_100%)] p-6 md:p-8">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+                            <div class="flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-[1.8rem] bg-white shadow-sm border border-slate-100">
                                 @if ($industry->logo_path)
-                                    <img src="{{ asset('storage/'.$industry->logo_path) }}" alt="{{ $industry->company_name }}" class="h-full w-full object-contain p-2">
+                                    <img src="{{ asset('storage/'.$industry->logo_path) }}" alt="{{ $industry->company_name }}" class="h-full w-full object-contain p-1">
                                 @else
-                                    <svg viewBox="0 0 80 80" class="h-14 w-14 text-slate-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="28" r="14"/><path d="M15 72c4-17 13-26 25-26s21 9 25 26H15Z"/></svg>
+                                    <svg viewBox="0 0 80 80" class="h-14 w-14 text-slate-300" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="28" r="14"/><path d="M15 72c4-17 13-26 25-26s21 9 25 26H15Z"/></svg>
                                 @endif
                             </div>
                             <div>
