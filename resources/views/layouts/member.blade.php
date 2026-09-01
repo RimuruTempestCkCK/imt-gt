@@ -4,9 +4,9 @@
 
 @section('body')
     <div class="min-h-screen lg:grid lg:grid-cols-[280px_1fr]">
-        <aside class="border-b border-slate-200 bg-white px-6 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
+        <aside class="border-b border-white/10 bg-slate-950 px-6 py-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
             <a href="{{ route('home') }}" class="flex items-center gap-4">
-                <div class="flex h-12 w-28 items-center overflow-hidden rounded-xl bg-white px-2 py-1 shadow-sm border border-slate-100">
+                <div class="flex h-12 w-28 items-center overflow-hidden rounded-xl bg-white/10 px-2 py-1 shadow-sm border border-white/10">
                     <img
                         src="https://imtgt.org/wp-content/uploads/2020/11/LOGO-RED-WHITE-1-1536x768.png"
                         alt="IMT-GT Logo"
@@ -14,20 +14,20 @@
                     >
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">{{ data_get($siteSettings ?? [], 'app_name', 'IMT-GT') }}</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.28em] text-slate-300">{{ data_get($siteSettings ?? [], 'app_name', 'IMT-GT') }}</p>
                     <p class="text-sm text-slate-500">{{ app()->isLocale('en') ? 'Business Member Area' : 'Area Member Bisnis' }}</p>
                 </div>
             </a>
 
             <nav class="mt-8 space-y-2 text-sm">
-                <div class="pt-2 text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">{{ app()->isLocale('en') ? 'Member Menu' : 'Menu Member' }}</div>
-                <a href="{{ route('account.dashboard') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.dashboard') ? 'bg-cyan-50 text-cyan-800 font-bold border border-cyan-100 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 group flex items-center' }}">
+                <div class="pt-2 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">{{ app()->isLocale('en') ? 'Member Menu' : 'Menu Member' }}</div>
+                <a href="{{ route('account.dashboard') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.dashboard') ? 'bg-cyan-900/30 text-cyan-300 font-bold border border-cyan-800/50 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-400 hover:bg-white/5 hover:text-white group flex items-center' }}">
                     Dashboard
                 </a>
-                <a href="{{ route('account.products.index') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.products.*') ? 'bg-cyan-50 text-cyan-800 font-bold border border-cyan-100 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 group flex items-center' }}">
+                <a href="{{ route('account.products.index') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.products.*') ? 'bg-cyan-900/30 text-cyan-300 font-bold border border-cyan-800/50 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-400 hover:bg-white/5 hover:text-white group flex items-center' }}">
                     {{ app()->isLocale('en') ? 'My Products' : 'Produk Saya' }}
                 </a>
-                <a href="{{ route('account.company-profile.edit') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.company-profile.*') ? 'bg-cyan-50 text-cyan-800 font-bold border border-cyan-100 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 group flex items-center' }}">
+                <a href="{{ route('account.company-profile.edit') }}" class="block rounded-2xl px-4 py-3 transition {{ request()->routeIs('account.company-profile.*') ? 'bg-cyan-900/30 text-cyan-300 font-bold border border-cyan-800/50 shadow-sm relative flex items-center overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-cyan-600' : 'text-slate-400 hover:bg-white/5 hover:text-white group flex items-center' }}">
                     {{ app()->isLocale('en') ? 'Company Profile' : 'Profil Perusahaan' }}
                 </a>
             </nav>

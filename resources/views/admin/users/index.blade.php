@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="rounded-[1.75rem] border border-slate-200 bg-white shadow-sm overflow-hidden">
-        <div class="border-b border-slate-200 px-6 py-4 flex justify-between items-center bg-slate-50">
+        <div class="border-b border-slate-200 px-6 py-5 flex justify-between items-center bg-white rounded-t-[2rem]">
             <p class="text-sm text-slate-600">Daftar user yang sudah memiliki akses ke sistem.</p>
             <button onclick="document.getElementById('modal-create').showModal()" class="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white font-medium rounded-xl text-sm transition shadow-sm">
                 + Tambah User
@@ -59,31 +59,31 @@
                         </tr>
 
                         <!-- EDIT MODAL -->
-                        <dialog id="modal-edit-{{ $user->id }}" class="w-full max-w-xl rounded-2xl p-0 shadow-2xl backdrop:bg-slate-900/50 open:animate-in open:fade-in open:zoom-in-95">
+                        <dialog id="modal-edit-{{ $user->id }}" class="w-full max-w-xl m-auto rounded-[2rem] border border-slate-100 p-0 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95">
                             <form action="{{ route('admin.users.update', $user) }}" method="POST">
                                 @csrf @method('PUT')
-                                <div class="border-b border-slate-200 px-6 py-4 flex justify-between items-center bg-slate-50">
+                                <div class="border-b border-slate-200 px-6 py-5 flex justify-between items-center bg-white rounded-t-[2rem]">
                                     <h3 class="text-lg font-semibold text-slate-900">Edit User</h3>
                                     <button type="button" onclick="document.getElementById('modal-edit-{{ $user->id }}').close()" class="text-slate-400 hover:text-slate-600">
                                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                     </button>
                                 </div>
-                                <div class="p-6 space-y-4">
+                                <div class="p-6 md:p-8 space-y-5 bg-white">
                                     <div>
                                         <label class="mb-1 block text-sm font-medium text-slate-700">Nama Lengkap</label>
-                                        <input name="name" value="{{ $user->name }}" required class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                                        <input name="name" value="{{ $user->name }}" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                                     </div>
                                     <div>
                                         <label class="mb-1 block text-sm font-medium text-slate-700">Email</label>
-                                        <input type="email" name="email" value="{{ $user->email }}" required class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                                        <input type="email" name="email" value="{{ $user->email }}" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                                     </div>
                                     <div>
                                         <label class="mb-1 block text-sm font-medium text-slate-700">Password Baru (Opsional)</label>
-                                        <input type="password" name="password" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" placeholder="Kosongkan jika tidak ingin mengubah">
+                                        <input type="password" name="password" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" placeholder="Kosongkan jika tidak ingin mengubah">
                                     </div>
                                     <div>
                                         <label class="mb-1 block text-sm font-medium text-slate-700">Konfirmasi Password Baru</label>
-                                        <input type="password" name="password_confirmation" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                                        <input type="password" name="password_confirmation" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                                     </div>
                                     <div>
                                         <label class="mb-2 block text-sm font-medium text-slate-700">Role Akses</label>
@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="border-t border-slate-200 px-6 py-4 bg-slate-50 flex justify-end gap-3">
+                                <div class="border-t border-slate-200 px-6 py-5 bg-slate-50/50 flex justify-end gap-3 rounded-b-[2rem]">
                                     <button type="button" onclick="document.getElementById('modal-edit-{{ $user->id }}').close()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800">Batal</button>
                                     <button type="submit" class="imtgt-button imtgt-button-primary text-white bg-cyan-700 hover:bg-cyan-800">Simpan Perubahan</button>
                                 </div>
@@ -115,31 +115,31 @@
     </section>
 
     <!-- CREATE MODAL -->
-    <dialog id="modal-create" class="w-full max-w-xl rounded-2xl p-0 shadow-2xl backdrop:bg-slate-900/50 open:animate-in open:fade-in open:zoom-in-95" {{ $errors->any() ? 'open' : '' }}>
+    <dialog id="modal-create" class="w-full max-w-xl m-auto rounded-[2rem] border border-slate-100 p-0 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95" {{ $errors->any() ? 'open' : '' }}>
         <form action="{{ route('admin.users.store') }}" method="POST">
             @csrf
-            <div class="border-b border-slate-200 px-6 py-4 flex justify-between items-center bg-slate-50">
+            <div class="border-b border-slate-200 px-6 py-5 flex justify-between items-center bg-white rounded-t-[2rem]">
                 <h3 class="text-lg font-semibold text-slate-900">Tambah User Baru</h3>
                 <button type="button" onclick="document.getElementById('modal-create').close()" class="text-slate-400 hover:text-slate-600">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div class="p-6 space-y-4">
+            <div class="p-6 md:p-8 space-y-5 bg-white">
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Nama Lengkap <span class="text-rose-600">*</span></label>
-                    <input name="name" value="{{ old('name') }}" required class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                    <input name="name" value="{{ old('name') }}" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Email <span class="text-rose-600">*</span></label>
-                    <input type="email" name="email" value="{{ old('email') }}" required class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                    <input type="email" name="email" value="{{ old('email') }}" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Password <span class="text-rose-600">*</span></label>
-                    <input type="password" name="password" required minlength="8" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                    <input type="password" name="password" required minlength="8" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Konfirmasi Password <span class="text-rose-600">*</span></label>
-                    <input type="password" name="password_confirmation" required minlength="8" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                    <input type="password" name="password_confirmation" required minlength="8" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                 </div>
                 <div>
                     <label class="mb-2 block text-sm font-medium text-slate-700">Role Akses</label>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t border-slate-200 px-6 py-4 bg-slate-50 flex justify-end gap-3">
+            <div class="border-t border-slate-200 px-6 py-5 bg-slate-50/50 flex justify-end gap-3 rounded-b-[2rem]">
                 <button type="button" onclick="document.getElementById('modal-create').close()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800">Batal</button>
                 <button type="submit" class="imtgt-button imtgt-button-primary text-white bg-cyan-700 hover:bg-cyan-800">Simpan User</button>
             </div>

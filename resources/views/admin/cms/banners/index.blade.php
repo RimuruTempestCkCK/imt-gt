@@ -32,16 +32,16 @@
             </article>
 
             <!-- EDIT MODAL -->
-            <dialog id="modal-edit-{{ $banner->id }}" class="w-full max-w-2xl rounded-2xl p-0 shadow-2xl backdrop:bg-slate-900/50 open:animate-in open:fade-in open:zoom-in-95">
+            <dialog id="modal-edit-{{ $banner->id }}" class="w-full max-w-2xl m-auto rounded-[2rem] border border-slate-100 p-0 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95">
                 <form action="{{ route('admin.banners.update', $banner) }}" method="POST" enctype="multipart/form-data">
                     @csrf @method('PUT')
-                    <div class="border-b border-slate-200 px-6 py-4 flex justify-between items-center bg-slate-50">
+                    <div class="border-b border-slate-200 px-6 py-5 flex justify-between items-center bg-white rounded-t-[2rem]">
                         <h3 class="text-lg font-semibold text-slate-900">Edit Banner</h3>
                         <button type="button" onclick="document.getElementById('modal-edit-{{ $banner->id }}').close()" class="text-slate-400 hover:text-slate-600">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                     </div>
-                    <div class="p-6 space-y-5">
+                    <div class="p-6 md:p-8 space-y-6 bg-white">
                         <div>
                             <label class="mb-1 block text-sm font-medium text-slate-700">Upload Foto Banner Baru (Opsional)</label>
                             <input type="file" name="image" accept="image/*" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
@@ -49,37 +49,37 @@
                         </div>
                         <div>
                             <label class="mb-1 block text-sm font-medium text-slate-700">Judul Utama</label>
-                            <input name="title" value="{{ $banner->title }}" required class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                            <input name="title" value="{{ $banner->title }}" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                         </div>
                         <div>
                             <label class="mb-1 block text-sm font-medium text-slate-700">Sub-judul / Deskripsi Singkat</label>
-                            <textarea name="subtitle" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" rows="2">{{ $banner->subtitle }}</textarea>
+                            <textarea name="subtitle" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" rows="2">{{ $banner->subtitle }}</textarea>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="mb-1 block text-sm font-medium text-slate-700">Teks Tombol (CTA)</label>
-                                <input name="cta_label" value="{{ $banner->cta_label }}" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" placeholder="Misal: Lihat Promo">
+                                <input name="cta_label" value="{{ $banner->cta_label }}" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" placeholder="Misal: Lihat Promo">
                             </div>
                             <div>
                                 <label class="mb-1 block text-sm font-medium text-slate-700">URL Tombol (CTA)</label>
-                                <input name="cta_url" value="{{ $banner->cta_url }}" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" placeholder="https://...">
+                                <input name="cta_url" value="{{ $banner->cta_url }}" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" placeholder="https://...">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="mb-1 block text-sm font-medium text-slate-700">Urutan Tampil</label>
-                                <input type="number" name="sort_order" value="{{ $banner->sort_order }}" required min="1" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                                <input type="number" name="sort_order" value="{{ $banner->sort_order }}" required min="1" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                             </div>
                             <div>
                                 <label class="mb-1 block text-sm font-medium text-slate-700">Status</label>
-                                <select name="is_active" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                                <select name="is_active" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                                     <option value="1" {{ $banner->is_active ? 'selected' : '' }}>Aktif (Tampil)</option>
                                     <option value="0" {{ !$banner->is_active ? 'selected' : '' }}>Nonaktif (Sembunyikan)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="border-t border-slate-200 px-6 py-4 bg-slate-50 flex justify-end gap-3">
+                    <div class="border-t border-slate-200 px-6 py-5 bg-slate-50/50 flex justify-end gap-3 rounded-b-[2rem]">
                         <button type="button" onclick="document.getElementById('modal-edit-{{ $banner->id }}').close()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800">Batal</button>
                         <button type="submit" class="imtgt-button imtgt-button-primary text-white">Simpan Perubahan</button>
                     </div>
@@ -90,53 +90,53 @@
     <div class="mt-6">{{ $banners->links() }}</div>
 
     <!-- CREATE MODAL -->
-    <dialog id="modal-create" class="w-full max-w-2xl rounded-2xl p-0 shadow-2xl backdrop:bg-slate-900/50 open:animate-in open:fade-in open:zoom-in-95" {{ $errors->any() ? 'open' : '' }}>
+    <dialog id="modal-create" class="w-full max-w-2xl m-auto rounded-[2rem] border border-slate-100 p-0 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95" {{ $errors->any() ? 'open' : '' }}>
         <form action="{{ route('admin.banners.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="border-b border-slate-200 px-6 py-4 flex justify-between items-center bg-slate-50">
+            <div class="border-b border-slate-200 px-6 py-5 flex justify-between items-center bg-white rounded-t-[2rem]">
                 <h3 class="text-lg font-semibold text-slate-900">Tambah Banner Baru</h3>
                 <button type="button" onclick="document.getElementById('modal-create').close()" class="text-slate-400 hover:text-slate-600">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-            <div class="p-6 space-y-5">
+            <div class="p-6 md:p-8 space-y-6 bg-white">
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Upload Foto Banner <span class="text-rose-600">*</span></label>
                     <input type="file" name="image" accept="image/*" required class="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Judul Utama <span class="text-rose-600">*</span></label>
-                    <input name="title" value="{{ old('title') }}" required class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                    <input name="title" value="{{ old('title') }}" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">Sub-judul / Deskripsi Singkat</label>
-                    <textarea name="subtitle" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" rows="2">{{ old('subtitle') }}</textarea>
+                    <textarea name="subtitle" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" rows="2">{{ old('subtitle') }}</textarea>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-700">Teks Tombol (CTA)</label>
-                        <input name="cta_label" value="{{ old('cta_label') }}" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" placeholder="Misal: Lihat Promo">
+                        <input name="cta_label" value="{{ old('cta_label') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" placeholder="Misal: Lihat Promo">
                     </div>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-700">URL Tombol (CTA)</label>
-                        <input name="cta_url" value="{{ old('cta_url') }}" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900" placeholder="https://...">
+                        <input name="cta_url" value="{{ old('cta_url') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900" placeholder="https://...">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-700">Urutan Tampil <span class="text-rose-600">*</span></label>
-                        <input type="number" name="sort_order" value="{{ old('sort_order', 1) }}" required min="1" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                        <input type="number" name="sort_order" value="{{ old('sort_order', 1) }}" required min="1" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                     </div>
                     <div>
                         <label class="mb-1 block text-sm font-medium text-slate-700">Status</label>
-                        <select name="is_active" class="imtgt-input bg-slate-50 border-slate-200 text-slate-900">
+                        <select name="is_active" class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-cyan-500 focus:bg-white focus:ring focus:ring-cyan-500/20 transition border-slate-200 text-slate-900">
                             <option value="1" {{ old('is_active', '1') == '1' ? 'selected' : '' }}>Aktif (Tampil)</option>
                             <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>Nonaktif (Sembunyikan)</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-slate-200 px-6 py-4 bg-slate-50 flex justify-end gap-3">
+            <div class="border-t border-slate-200 px-6 py-5 bg-slate-50/50 flex justify-end gap-3 rounded-b-[2rem]">
                 <button type="button" onclick="document.getElementById('modal-create').close()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800">Batal</button>
                 <button type="submit" class="imtgt-button imtgt-button-primary text-white">Simpan Banner</button>
             </div>
